@@ -34,6 +34,10 @@ abstract class AbstractLockGuardCommand extends Command
                 exit();
             }
 
+            if (!file_exists($this->logPath . '/lock')) {
+                mkdir($this->logPath . '/lock', 0777, true);
+            }
+
             touch($lockFile);
             $this->lockFile = $lockFile;
             $this->getLogger()->info('Lock file created: ' . $lockFile);
