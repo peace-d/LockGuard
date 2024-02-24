@@ -19,7 +19,7 @@ abstract class AbstractLockGuardCommand extends Command
     public function __construct(LoggerInterface $logger = null)
     {
         $this->logger = $logger;
-        $this->logPath = __DIR__ . '/../../var/log';
+        $this->logPath = __DIR__ . '/../../var';
 
         parent::__construct();
     }
@@ -45,7 +45,7 @@ abstract class AbstractLockGuardCommand extends Command
             $this->getLogger()->warning('Running without lock mode on');
         }
 
-        $logFile = $this->logPath . '/command/' . $this->getCurrentFileName();
+        $logFile = $this->logPath . '/log/command/' . $this->getCurrentFileName();
 
         $streamHandler = new StreamHandler('php://stderr', 100);
         $streamHandler->setFormatter(new LineFormatter(null, 'Y-m-d H:i:s'));
